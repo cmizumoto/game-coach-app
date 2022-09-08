@@ -59,8 +59,8 @@ export const useAuthStore = defineStore("authStore", {
       if (mode === "signup") {
         url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=";
       }
-
-      const response = await fetch(url + "AIzaSyDEjtKUnE9RdzRr84mLKXeO7-ms5sTaH5o", {
+      const firebaseKey = import.meta.env.VITE_FIREBASE;
+      const response = await fetch(url + firebaseKey, {
         method: "POST",
         body: JSON.stringify({
           email: payload.email,

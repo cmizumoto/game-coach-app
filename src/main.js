@@ -3,6 +3,7 @@ import { createPinia } from "pinia";
 import router from "@/routes/index.js";
 import App from "./App.vue";
 import BaseSpinner from "./components/ui/BaseSpinner.vue";
+
 // import BaseModal from "./components/ui/BaseModal.vue";
 
 const BaseModal = defineAsyncComponent(() => import("./components/ui/BaseModal.vue"));

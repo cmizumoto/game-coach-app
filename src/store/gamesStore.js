@@ -16,15 +16,17 @@ export const useGamesStore = defineStore("gamesStore", {
       let response;
       // Try fetching the data
       try {
-        const api_url = "https://gqkuommdmfzmwkzdewma.supabase.co/rest/v1/steam?select=*";
-        response = await fetch(api_url, {
-          headers: {
-            apikey:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdxa3VvbW1kbWZ6bXdremRld21hIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDkyNjQyNTIsImV4cCI6MTk2NDg0MDI1Mn0.iF651HDhqynAQRlG8T6wFS3ZEx4dqxHiEiguc0m7-zI",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXQiOiI2YzE5ZDg0ZjJlMTdhMWU1MDg4ZWMyMjIiLCJpYXQiOjE2NTg1MjEyODZ9.PxlObW3Yy1cXqJysOZUace_sEE9a0U_ecfo0k410mKw",
-          },
-        });
+        const api_key = import.meta.env.VITE_SUPADB;
+
+        response = await fetch(
+          "https://gqkuommdmfzmwkzdewma.supabase.co/rest/v1/<table>?select=*",
+          {
+            headers: {
+              apikey: api_key,
+              Authorization: "Bearer " + api_key,
+            },
+          }
+        );
         // If the server is not reached, we throw an error
         if (response.status !== 200) {
           throw true;
