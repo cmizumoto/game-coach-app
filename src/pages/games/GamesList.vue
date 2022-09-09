@@ -73,13 +73,18 @@ watch(searchInput, () => {
   }
 });
 
-/*
-  On mounted we execute the fetch
+/* 
+  Load games method
 */
-onMounted(() => {
-  catchError.value = gamesStore.errorShow;
-  gamesStore.getGames();
-});
+const loadGames = async () => {
+  try {
+    await gamesStore.getGames();
+  } catch (err) {
+    catchError.value = gamesStore.errorShow;
+  }
+};
+
+loadGames();
 </script>
 
 <style scoped>

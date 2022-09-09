@@ -16,17 +16,15 @@ export const useGamesStore = defineStore("gamesStore", {
       let response;
       // Try fetching the data
       try {
-        const api_key = import.meta.env.VITE_SUPADB;
+        const apiAnonKey = import.meta.env.VITE_SUPADB_ANON;
+        const apiAuthKey = import.meta.env.VITE_SUPADB_AUTH;
 
-        response = await fetch(
-          "https://gqkuommdmfzmwkzdewma.supabase.co/rest/v1/<table>?select=*",
-          {
-            headers: {
-              apikey: api_key,
-              Authorization: "Bearer " + api_key,
-            },
-          }
-        );
+        response = await fetch("https://gqkuommdmfzmwkzdewma.supabase.co/rest/v1/steam?select=*", {
+          headers: {
+            apikey: apiAnonKey,
+            Authorization: "Bearer " + apiAuthKey,
+          },
+        });
         // If the server is not reached, we throw an error
         if (response.status !== 200) {
           throw true;
